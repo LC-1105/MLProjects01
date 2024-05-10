@@ -8,6 +8,8 @@ from src.mlproject.components.data_ingestion import DataIngestionConfig
 
 from src.mlproject.components.data_transformation import DataTransformation,DataTransformationConfig 
 
+from src.mlproject.components.model_trainer import ModelTrainer,ModelTrainerConfig
+
 if __name__=="__main__":
     logging.info("the execution has started")
     
@@ -16,8 +18,14 @@ if __name__=="__main__":
         #data_ingestion_congig=DataIngestionConfig()
         data_ingestion=DataIngestion()
         train_data_path,test_data_path=data_ingestion.initiate_data_ingestion()
+        #Data Transformation
         data_transformation =DataTransformation()
-        data_transformation.initiate_data_transformation(train_data_path,test_data_path)
+        train_arr,test_arr,_=data_transformation.initiate_data_transformation(train_data_path,test_data_path)
+        
+        #Model Training
+        model_trainer=ModelTrainer()
+        r2,modelname=model_trainer.initiate_model_trainer(train_arr,test_arr)
+        print(r2, " ",modelname)
         
     except Exception as e:
         logging.info("Custom Exception")
