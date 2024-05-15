@@ -38,5 +38,5 @@ def predict_datapoint():
         return render_template('home.html',results=results[0])
     
 if __name__ == "__main__":
-    app.run(host="0.0.0.0",debug=True) #Set this to ``'0.0.0.0'`` to Runs the application on a local development server.
+    app.run(host="0.0.0.0") #Set this to ``'0.0.0.0'`` to Runs the application on a local development server.
     
